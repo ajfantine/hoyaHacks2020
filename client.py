@@ -3,19 +3,20 @@ import socket
   
   
 def Main(): 
-    host = '10.150.237.218'
+    host = '10.150.242.200'
   
     # Define the port on which you want to connect 
     port = 5056
   
     server_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
-  
+
     # connect to server on local computer 
     server_socket.connect((host, port))
+
   
     while True: 
   
-        message = str(['cream cheese','bacon', 'eggs', 'olive oil', 'cheddar cheese', 'salt', 'pepper', 'milk', 'butter', 'green onions', 'spinach', 'pimento', 'dough'])
+        message = str(['chicken', 'pork', 'steak', 'cream cheese','bacon', 'eggs', 'olive oil', 'cheddar cheese', 'salt', 'pepper', 'milk', 'butter', 'green onions', 'spinach', 'pimento', 'dough', 'tomatoes'])
         # message sent to server 
         server_socket.send(message.encode('ascii', 'ignore'))
         print("Searching for recipes...")

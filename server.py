@@ -2,7 +2,7 @@
 import socket
 import requests
 import nltk
-import re
+import random
 from bs4 import BeautifulSoup
   
 # import thread module 
@@ -27,8 +27,17 @@ def get_ingredients(url):
 #     #print(ing_list)
 #     return recipe_steps
 
+def get_search(pantry):
+    search = ""
+    meats = ['steak','chicken','pork','beef','lamb','turkey']
+    meats_in_pantry = list(set(pantry).intersection(set(meats)))
+    random.shuffle(meats_in_pantry)
+    if (not len(meats_in_pantry) == 0):
+        search += meats_in_pantry[0]
+    return search
+
 def get_reccomendation(pantry, search):
-    print("Searching for recipes...")
+    print(f"Searching for recipes with {search}...")
     url = "https://www.googleapis.com/customsearch/v1"
     exact = "recipe"
     querystring = {"key": "AIzaSyDZUfQlDisHb2oYpJxwHLUjXA9qC7Zhqoo",
@@ -97,7 +106,7 @@ def on_new_client(client_socket):
 
         pantry_str = str(data.decode('ascii'))
         pantry = eval(pantry_str)
-        search = "egg bacon cheese"
+        search = get_search(pantry)
         recipes = get_reccomendation(pantry, search)
 
         data = str(recipes)
