@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang=en>
+<title> What's Cookin'? </title>
+<meta charset = 'utf-8'>
+
+<style>
+
+  .button{
+    padding: 25px 25px;
+    padding-top: 25px;
+    margin-left: 40%;
+    margin-top: 25px;
+    border: solid 2px black;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    width: 10%;
+    height: 150px;
+  }
+  #header{
+    width: 100%;
+    height: 15vh;
+    /*border: solid red 2px;*/
+  }
+  #form-submission{
+    margin: 2vw 2vw;
+    padding: 2vw 2vw;
+    padding-left: 35vw;
+  }
+  #logo{
+    width: 35vh;
+    height: 35vh;
+    margin-left: 35vw;
+    margin-right: 10vw;
+  }
+
+</style>
+
+  <!--<body onload="runOnClick()">-->
+  <body>
+    <script type="module">
+    import React, { Component } from 'react';
+    import Profile from './Profile.js';
+    import Signin from './Signin.js';
+    import {
+      UserSession,
+      AppConfig
+    } from 'blockstack';
+
+      const appConfig = new AppConfig(['store_write'])
+      const userSession = new UserSession({ appConfig: appConfig })
+
+      export default class App extends Component {
+
+
+        handleSignIn(e) {
+          e.preventDefault();
+          userSession.redirectToSignIn();
+        }
+
+        handleSignOut(e) {
+          e.preventDefault();
+          userSession.signUserOut(window.location.origin);
+        }
+
+        render() {
+          return (
+            <div className="site-wrapper">
+              <div className="site-wrapper-inner">
+                { !userSession.isUserSignedIn() ?
+                  <Signin userSession={userSession} handleSignIn={ this.handleSignIn } />
+                  : <Profile userSession={userSession} handleSignOut={ this.handleSignOut } />
+                }
+              </div>
+            </div>
+          );
+        }
+
+        componentDidMount() {
+          if (userSession.isSignInPending()) {
+            userSession.handlePendingSignIn().then((userData) => {
+              window.history.replaceState({}, document.title, "/")
+              this.setState({ userData: userData})
+            });
+          }
+        }
+      }
+
+    </script>
+  </body>
+</html>
+    <!--
+    <div id="header"></div>
+
+    <a class="button" href="/my-link/"> Click me </a>
+
+    <a id="test" class="button" href="/my-link/"> Click me </a>
+
+    <img id="logo" src="static/whats_cookin_logo.jpg"></img>
+    <div id= "form-submission">
+      <form action="/add-users/" method="post">
+        Name:<br>
+        <input type="text" name="name"></input>
+        <br>
+        Number: <br>
+        <input type="text" name="number"></input>
+        <br>
+        <input type="submit" value="Signup"></input>
+      </form>
+    </div>
+  -->
