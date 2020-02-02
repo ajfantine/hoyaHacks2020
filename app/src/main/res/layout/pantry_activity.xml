@@ -19,6 +19,7 @@ tools:context=".PantryActivity">
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
             android:text="Scan Barcode" />
 
         <Button

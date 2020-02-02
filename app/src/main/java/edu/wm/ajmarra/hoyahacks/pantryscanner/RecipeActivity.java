@@ -24,7 +24,7 @@ public class RecipeActivity extends AppCompatActivity {
         recipeView = findViewById(R.id.recipeview);
         WebSettings webSettings = recipeView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        recipeView.loadUrl("http://www.google.com");
+        recipeView.loadUrl("http://10.150.237.154:5000/get-reccomendation/");
         recipeView.setWebViewClient(new WebViewClient());
 
         button1 = findViewById(R.id.button1);

@@ -47,8 +47,18 @@ public class ScanActivity extends AppCompatActivity {
         manualView = findViewById(R.id.manualEntry);
         WebSettings webSettings = manualView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        manualView.loadUrl("http://www.google.com");
-        manualView.setWebViewClient(new WebViewClient());
+        manualView.loadUrl("http://10.150.237.154:5000/scan-submission/");
+
+        //manualView.setWebViewClient(new WebViewClient());
+        manualView.setWebViewClient(new WebViewClient() {
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                manualView.loadUrl("http://10.150.237.154:5000/scan-submission/");
+
+            }
+        });
+
+
+        manualView.loadUrl("javascript:(function() { document.getElementById('food').value = '" + "HI" + "'; ;})()");
 
         button1 = findViewById(R.id.button1);
         button1.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +79,7 @@ public class ScanActivity extends AppCompatActivity {
         });
 
         surfaceView = (SurfaceView) findViewById(R.id.camerapreview);
-        textView = (TextView) findViewById(R.id.textView);
+        //textView = (TextView) findViewById(R.id.textView);
 
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.ALL_FORMATS).build();
@@ -122,6 +132,7 @@ public class ScanActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             textView.setText(qrCode.valueAt(0).displayValue); //This sets the text view to whatever the barcode scan results in
+                            manualView.loadUrl("javascript:(function() { document.getElementById('food').value = '" + qrCode.valueAt(0).displayValue + "'; ;})()");
                         }
                     });
                 }

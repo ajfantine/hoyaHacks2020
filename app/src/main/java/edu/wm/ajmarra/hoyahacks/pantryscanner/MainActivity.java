@@ -27,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loginView = findViewById(R.id.login);
-        WebSettings webSettings = loginView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        loginView.loadUrl("http://www.google.com");
-        loginView.setWebViewClient(new WebViewClient());
+        //loginView = findViewById(R.id.login);
+        //WebSettings webSettings = loginView.getSettings();
+        //webSettings.setJavaScriptEnabled(true);
+        //loginView.loadUrl("http://www.google.com");
+        //loginView.setWebViewClient(new WebViewClient());
 
         button1 = findViewById(R.id.button1);
         button1.setOnClickListener(new View.OnClickListener() {

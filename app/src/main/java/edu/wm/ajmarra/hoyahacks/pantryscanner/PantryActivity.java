@@ -22,7 +22,7 @@ public class PantryActivity extends AppCompatActivity {
         pantryView = findViewById(R.id.pantryview);
         WebSettings webSettings = pantryView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        pantryView.loadUrl("http://www.google.com");
+        pantryView.loadUrl("http://10.150.237.154:5000/display-database/");
         pantryView.setWebViewClient(new WebViewClient());
 
         button1 = findViewById(R.id.button1);

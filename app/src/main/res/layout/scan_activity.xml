@@ -15,10 +15,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
                 android:text="View Pantry" />
 
             <Button
@@ -34,14 +36,6 @@
             android:layout_height="480dp"
             android:layout_centerInParent="true" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_below="@+id/camerapreview"
-            android:layout_marginTop="20dp"
-            android:text="Scan a bar code!"
-            android:textSize="18sp" />
         <WebView
             android:id="@+id/manualEntry"
             android:layout_width="410dp"
